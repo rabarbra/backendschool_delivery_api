@@ -24,11 +24,11 @@ sudo systemctl enable uwsgi-flask
 
 ### Requirements
 
-###### Operating system
+#### Operating system
 
 Ubuntu 20.04.2 LTS
 
-###### System packages
+#### System packages
 
 1. Nginx 1.18.0
 2. Python3.8.5
@@ -37,7 +37,7 @@ Ubuntu 20.04.2 LTS
 5. build-essential 12.8ubuntu1
 6. python-dev 
 
-###### Python packages
+#### Python packages
 
 1. Flask 1.1.2
 2. Flask-SQLAlchemy 2.5.1
