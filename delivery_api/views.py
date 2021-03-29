@@ -30,7 +30,7 @@ def are_intersecting(int1, int2):
     return False
 
 
-@bp.route('/couriers', methods=['POST'])
+@bp.route('/couriers', methods=['POST'], strict_slashes=False)
 def post_couriers():
     errors = CourierSchema().validate(request.json["data"], many=True)
     if errors:
@@ -99,7 +99,7 @@ def path_courier(courier_id):
     return courier_item_schema.dump(courier)
 
 
-@bp.route('/orders', methods=['POST'])
+@bp.route('/orders', methods=['POST'], strict_slashes=False)
 def post_orders():
     errors = OrderSchema().validate(request.json["data"], many=True)
     if errors:
