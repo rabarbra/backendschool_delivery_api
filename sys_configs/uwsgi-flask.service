@@ -1,0 +1,11 @@
+[Unit]
+Description=uWSGI instance to serve uwsgi-flask
+After=network.target
+[Service]
+User=uwsgi-flask
+Group=www-data
+WorkingDirectory=/srv/uwsgi-flask/appdata
+Environment="PATH=/srv/uwsgi-flask/env/bin"
+ExecStart=/srv/uwsgi-flask/env/bin/uwsgi --ini uwsgi.ini
+[Install]
+WantedBy=multi-user.target
