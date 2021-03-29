@@ -4,7 +4,7 @@ from dateutil import parser, tz
 from rfc3339 import rfc3339
 from flask import Blueprint, request, jsonify, make_response
 from .models import db, Courier, Order, Region
-from .schemas import CourierSchema, OrderSchema, validate_time
+from .schemas import CourierSchema, OrderSchema, ValidationError, validate_time
 
 bp = Blueprint('my_api', __name__, url_prefix='')
 
@@ -49,14 +49,14 @@ def post_couriers():
     return make_response(jsonify(response), 201)
 
 
-@bp.route('/couriers/<int:courier_id>', methods=["POST", "GET"])
+@bp.route('/couriers/<int:courier_id>', methods=["PATCH", "GET"])
 def path_courier(courier_id):
     courier = Courier.query.filter(Courier.courier_id == courier_id).first()
     if not courier:
         return jsonify("Not found"), 404
     if request.method == "GET":
         response = courier_schema.dump(courier)
-        if not response["rating"]:
+        if response["rating"] is None:
             del response["rating"]
         return jsonify(response)
     data = request.json
@@ -126,7 +126,7 @@ def assign_orders():
     orders = Order.query.filter(
             Order.weight <= weights[courier.courier_type],
             db.text(f'order_region IN '
-                    '({", ".join([str(i)for i in courier.get_regions()])})'),
+                    f'({", ".join([str(i)for i in courier.get_regions()])})'),
             db.text('order_courier_id IS NULL')
     ).all()
     now = datetime.utcnow().replace(tzinfo=tz.UTC)

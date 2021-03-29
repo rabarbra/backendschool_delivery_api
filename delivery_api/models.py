@@ -67,11 +67,11 @@ class Courier(db.Model):
 
     def compute_rating(self):
         sql = f'SELECT MIN(a) FROM ' \
-               '(SELECT AVG(o.delivery_time) AS a ' \
-               'FROM "order" AS o ' \
-               'WHERE o.courier_id = {self.courier_id} ' \
-               'AND o.delivery_time IS NOT NULL ' \
-               'GROUP BY o.region)'
+              f'(SELECT AVG(o.delivery_time) AS a ' \
+              f'FROM "order" AS o ' \
+              f'WHERE o.courier_id = {self.courier_id} ' \
+              f'AND o.delivery_time IS NOT NULL ' \
+              f'GROUP BY o.region)'
         min_time = int(db.session.execute(sql).first()[0])
         if not min_time:
             return
