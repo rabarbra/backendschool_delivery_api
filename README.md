@@ -7,9 +7,9 @@ apt install python3 python3-venv nginx-full git
 mkdir /srv/uwsgi-flask
 useradd -d /srv/uwsgi-flask -G www-data -s /bin/bash uwsgi-flask
 sudo su uwsgi-flask
-cd
+cd ~
 git clone https://github.com/rabarbra/yandex_backendschool_delivery_api appdata
-python -m venv enc
+python -m venv env
 source env/bin/activate
 pip install -r appdata/requirements.txt
 python appdata/init_db.py
