@@ -165,7 +165,3 @@ def complete_order():
     db.session.commit()
     courier.compute_rating()
     return jsonify({"order_id": order.order_id})
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
