@@ -21,7 +21,7 @@ def create_app():
         return jsonify('Bad request'), 400
 
     @app.errorhandler(InternalServerError)
-    def handle_not_found(e):
+    def handle_server_error(e):
         return jsonify('Internal server error'), 500
 
     return app
