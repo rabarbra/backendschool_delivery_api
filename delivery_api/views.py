@@ -34,7 +34,6 @@ def are_intersecting(int1, int2):
 def post_couriers():
     errors = CourierSchema().validate(request.json["data"], many=True)
     if errors:
-        print(errors)
         couriers = []
         for key in errors.keys():
             couriers.append({"id": request.json["data"][key]["courier_id"],
