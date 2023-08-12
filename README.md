@@ -1,4 +1,4 @@
-# Yandex backend school test assignment project
+# Backend school test assignment project
 
 ### Deploy instruction
 
@@ -8,7 +8,7 @@ mkdir /srv/uwsgi-flask
 useradd -d /srv/uwsgi-flask -G www-data -s /bin/bash uwsgi-flask
 sudo su uwsgi-flask
 cd ~
-git clone https://github.com/rabarbra/yandex_backendschool_delivery_api appdata
+git clone https://github.com/rabarbra/backendschool_delivery_api appdata
 python3 -m venv env
 source env/bin/activate
 pip install wheel
